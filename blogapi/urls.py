@@ -19,5 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/posts/', include('posts.urls')),
+    path('api/posts/', include('posts.urls')), # This prefixes all posts URLs with /api/posts/
+
 ]
