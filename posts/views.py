@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from .models import Post
 
-@csrf_exempt
+@csrf_exempt   
 def post_list(request):
     if request.method == 'GET':
         posts = list(Post.objects.values()) # SQL: "SELECT * FROM posts_post;"
