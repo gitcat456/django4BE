@@ -1,5 +1,12 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post,Author
+
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ['id', 'author']
+    search_fields = ['author']
+    list_filter = ['author']
+    list_editable = ['author']
+    list_per_page = 20
 
 # Customize how Post appears in admin
 class PostAdmin(admin.ModelAdmin):
