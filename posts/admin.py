@@ -27,3 +27,4 @@ class PostAdmin(admin.ModelAdmin):
 
 # Register with custom options
 admin.site.register(Post, PostAdmin)
+admin.site.register(Author, AuthorAdmin)
