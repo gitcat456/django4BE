@@ -2,10 +2,10 @@ from django.contrib import admin
 from .models import Post,Author
 
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ['id', 'author']
-    search_fields = ['author']
-    list_filter = ['author']
-    list_editable = ['author']
+    list_display = ['id', 'author_name']
+    search_fields = ['author_name']
+    list_filter = ['author_name']
+    list_editable = ['author_name']
     list_per_page = 20
 
 # Customize how Post appears in admin
