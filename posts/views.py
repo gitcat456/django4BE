@@ -7,7 +7,7 @@ from .models import Post
 @csrf_exempt   
 def post_list(request):
     if request.method == 'GET':
-        posts = list(Post.objects.values()) # SQL: "SELECT * FROM posts_post;"
+        posts = list(Post.objects.values()) 
         return JsonResponse(posts, safe=False)
 
 @csrf_exempt
