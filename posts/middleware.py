@@ -20,6 +20,7 @@ class RequestInfoLogger:
         logger.info(
             f"TimeTaken: {duration:.4f}"
             f"Status: {response.status_code} "
+            f"Response: {response.content.data}"
         )
 
         return response 
