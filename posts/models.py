@@ -1,4 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    phone = models.CharField(max_length=15, blank=True)
+    age = models.IntegerField(max_length=2, blank=True)
+    
+    def __str__(self):
+        return self.username
 
 class Author(models.Model):
     author_name = models.CharField(max_length=100)
