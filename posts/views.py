@@ -3,6 +3,38 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from .models import Post
+from .jwt_utils import generate_jwt
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from django.contrib.auth import authenticate 
+
+#jwt_login view
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def jwt_login_view(request):
+    
+    username = request.data.get('username')
+    password = request.data.get('password')
+    
+    if not username or not password:
+        return Response({
+            "error": "username and password are required!"
+        }, status=401)
+        
+    user = authenticate(username=username, password=password)
+    
+    if user is None:
+        return Response({
+            "error":"Invalid credentials!"
+        }, status=401)
+        
+    token = generate_jwt(user)
+    
+    return Response({
+        "user": user,
+        "token": token
+    })
 
 @csrf_exempt   
 def post_list(request):
