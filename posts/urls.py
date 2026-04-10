@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.post_list, name='post-list'),
     path('create/', views.create_post, name='create-post'),
     path('delete/', views.delete_post),
+    path('jwt-login/', views.jwt_login_view),
 ]
 
 # The `urlpatterns` list routes URLs to views
