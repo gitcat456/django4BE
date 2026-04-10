@@ -1,4 +1,4 @@
-import pyjwt
+import jwt
 from datetime import datetime, timedelta, timezone
 from django.conf import settings 
 from rest_framework import exceptions
@@ -11,18 +11,18 @@ def generate_jwt(user):
         "exp": datetime.now(timezone.utc) + timedelta(minutes=15)
     }
     
-    access = pyjwt.encode(payload, settings.SECRET_KEY, algorithhm="HS256")
+    access = jwt.encode(payload, settings.SECRET_KEY, algorithhm="HS256")
     
     return access
 
 def verify_jwt(token):
     
     try:
-        payload = pyjwt.decode(token, settings.SECRET_KEY, algorithm="HS256")
+        payload = jwt.decode(token, settings.SECRET_KEY, algorithm="HS256")
         return payload
-    except pyjwt.ExpiredSignatureError:
+    except jwt.ExpiredSignatureError:
         raise exceptions.AuthenticationFailed("Expired Token!!")
-    except pyjwt.InvalidTokenError:
+    except jwt.InvalidTokenError:
         raise exceptions.AuthenticationFailed("Invalid Token!")
     
     
